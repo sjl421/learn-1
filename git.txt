@@ -1,9 +1,9 @@
 git init--把目录变成git可以管理的仓库	--eg: git init
 git add file --把文件添加到版本库中标记  --eg: git add ./
-git commit -m 'some file' --把标记的文件添加到本地版本库中 m--表示消息，即本次提交的文件说明  --eg: git commit -m '添加文件'
-git status  --显示本地工作树的状态    --git status
+git commit -m 'some file' --把标记的文件添加到本地版本库中 m--表示消息，即本次提交的文件说明  --eg: git commit -m '添加文件' --commit id 使用sha1算法获得
+git status  --显示本地工作树的状态 查看工作区的状态,查看文件有没有被修改过    --git status
 git --help  --显示git的帮助信息
-git log   --显示提交的日志信息
+git log --pretty=oneline  --显示提交的日志信息
 git rm  file  --删除文件从工作树和版本库的索引中   --eg: git rm aa   
 git remote add origin 远程仓库地址  --添加远程仓库源    --eg:git remote add origin https://github.com/undergrowthlinear/learn.git
 git pull origin master  --从远程仓库中获取master文件     --eg: git pull origin master
@@ -11,7 +11,8 @@ git push origin master  --添加本地版本库代码到远程仓库   --eg: git push origin m
 git clone 远程仓库地址  --将远程仓库的地址复制到本地     --eg  git clone https://github.com/undergrowthlinear/learn.git
 git tag  --显示所有tag						--eg:	git tag
 git tag -a tag名称    --创建tag				--eg:	git tag -a v10
-git diff 文件  --查看文件的不同   --eg:git diff git.txt
+git diff 文件  --查看文件与提交到版本库中的不同，查看文件修改的内容   --eg:git diff git.txt
+git reset --hard head^ --回退到上一版本    --eg: git reset --hard head~100 回退到之前的100版本  --eg： git reset --hard commit id --回退到指定的commit id
 
 /**
 repository---仓库/版本库
