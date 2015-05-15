@@ -23,7 +23,15 @@ git diff 文件  --查看文件与提交到版本库中的不同，查看文件修改的内容   --eg:git d
 
 git reset --hard head^ --回退到上一版本    --eg: git reset --hard head~100 回退到之前的100版本  --eg： git reset --hard commit id --回退到指定的commit id  --回退到指定版本
 git reflog   --查看每一次的git命令 与git reset 连用  想恢复到那个版本都没有问题啊  --查看命令历史
-git log --pretty=oneline  --显示提交的日志信息  --查看提交历史
+git log --graph --pretty=oneline  --abbrev-commit --显示提交的日志信息  --查看提交历史
+
+
+git branch   --查看分支
+git branch 分支名 --创建分支
+git checkout 分支名  --切换到指定分支名
+git checkout -b 分支名  --创建分支 并切换到分支
+git merge 分支名  --合并分支名到当前分支
+git branch -d 分支名  --删除分支
 
 
 /**
@@ -33,4 +41,5 @@ repository---仓库/版本库
 分布式版本控制系统--GIT
 UNIX哲学--没有消息就是好消息
 GIT管理的是修改，而非文件
+HEAD指向master,master指向最新的提交
 **/
