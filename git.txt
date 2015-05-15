@@ -11,7 +11,7 @@ git push origin master  --添加本地版本库代码到远程仓库   --eg: git push origin m
 git clone 远程仓库地址  --将远程仓库的地址复制到本地     --eg  git clone https://github.com/undergrowthlinear/learn.git
 git tag  --显示所有tag						--eg:	git tag
 git tag -a tag名称    --创建tag				--eg:	git tag -a v10
-
+git diff 文件  --查看文件的不同   --eg:git diff git.txt
 
 /**
 repository---仓库/版本库
