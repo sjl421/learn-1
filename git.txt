@@ -8,11 +8,24 @@ git remote add origin 远程仓库地址  --添加远程仓库源    --eg:git remote add orig
 git pull origin master  --从远程仓库中获取master文件     --eg: git pull origin master											--从远程仓库拉取代码到本地仓库
 git push origin master  --添加本地版本库代码到远程仓库   --eg: git push origin master		
 					   --第一次进行推送时 git push -u origin master									--从本地仓库推送代码到远程仓库
+git remote -v  --查看远程仓库的信息					   
 git clone 远程仓库地址  --将远程仓库的地址复制到本地     --eg  git clone https://github.com/undergrowthlinear/learn.git			--从远程仓库下载代码到本地仓库
 
 git tag  --显示所有tag						--eg:	git tag					--显示标签
 git tag -a tag名称    --创建tag				--eg:	git tag -a v10			--创建标签
+git tag -a tag名称 -m 标签的备注信息   commit id   ----为特定的commit打上标签
+git tag -d 标签名  --删除标签
+git push origin :refs/tags/标签名  --删除已经推送的标签
+git push origin 标签名  --推送标签到远程库  git push origin --tags  --推送所有标签
+--标签管理  就是指向某个commit id，也是版本库的一个快照,默认为HEAD版本打上标签  
 
+git show 标签名  --显示标签的信息
+
+git stash  --保存工作区的状态
+git stash list  --查看保存的工作区列表
+git stash pop   --恢复列表中第一个工作区
+git stash apply 工作区名  --恢复指定保存的工作区
+git stash drop 工作区名   --删除保存的工作区
 
 git --help  --显示git的帮助信息												--查看帮助信息
 git rm  file  --删除文件从工作树和版本库的索引中   --eg: git rm aa 			--删除指定文件
@@ -28,11 +41,14 @@ git log --graph --pretty=oneline  --abbrev-commit --显示提交的日志信息  --查看提
 
 git branch   --查看分支
 git branch 分支名 --创建分支
+git branch --set-upstream 本地分支名 origin/远程分支名  --把本地分支与远程分支进行关联
 git checkout 分支名  --切换到指定分支名
 git checkout -b 分支名  --创建分支 并切换到分支
+git checkout -b 本地分支名 origin/远程分支名  --在本地创建和远程一样的分支
 git merge 分支名  --合并分支名到当前分支
 git branch -d 分支名  --删除分支
-
+git branch -D 分支名  --当分支没有合并时  使用D可以进行强行删除
+git merge --no-ff -m 'merge no-ff' dev      --不使用快速合并  使用提交合并 可看到提交历史
 
 /**
 repository---仓库/版本库
