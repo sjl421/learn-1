@@ -1,6 +1,8 @@
 git init--把目录变成git可以管理的仓库	--eg: git init																		--初始化本地仓库
 git add file --把文件添加到版本库中标记  --eg: git add ./																	--添加文件到本地索引中
 git commit -m 'some file' --把标记的文件添加到本地版本库中 m--表示消息，即本次提交的文件说明  --eg: git commit -m '添加文件' --commit id 使用sha1算法获得 		--提交文件到本地仓库
+--工作区 暂存区  本地分支
+--通常的操作都是在工作区进行的  在工作区进行操作后  需要add将变化添加到暂存区 然后使用commit将暂存区的变化  全部添加到本地分支中
   
 git remote add origin 远程仓库地址  --添加远程仓库源    --eg:git remote add origin https://github.com/undergrowthlinear/learn.git		--添加远程仓库源
 git pull origin master  --从远程仓库中获取master文件     --eg: git pull origin master											--从远程仓库下载代码到本地仓库
@@ -28,4 +30,5 @@ repository---仓库/版本库
 集中式版本控制系统--CVS、SVN
 分布式版本控制系统--GIT
 UNIX哲学--没有消息就是好消息
+GIT管理的是修改，而非文件
 **/
