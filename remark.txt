@@ -2,4 +2,4 @@ remark what some
 git manager change,is not file
 ok nothing is you
 ok what is you
-
+ok bug fix
