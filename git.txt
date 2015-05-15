@@ -1,6 +1,6 @@
 git init--把目录变成git可以管理的仓库	--eg: git init
 git add file --把文件添加到版本库中标记  --eg: git add ./
-git commit -m 'some file' --把标记的文件添加到本地版本库中  --eg: git commit -m '添加文件'
+git commit -m 'some file' --把标记的文件添加到本地版本库中 m--表示消息，即本次提交的文件说明  --eg: git commit -m '添加文件'
 git status  --显示本地工作树的状态    --git status
 git --help  --显示git的帮助信息
 git log   --显示提交的日志信息
@@ -11,3 +11,12 @@ git push origin master  --添加本地版本库代码到远程仓库   --eg: git push origin m
 git clone 远程仓库地址  --将远程仓库的地址复制到本地     --eg  git clone https://github.com/undergrowthlinear/learn.git
 git tag  --显示所有tag						--eg:	git tag
 git tag -a tag名称    --创建tag				--eg:	git tag -a v10
+
+
+/**
+repository---仓库/版本库
+版本控制系统只能追踪文本文件的变化，图片、视频等二进制文件的内容变化是没有办法追踪的，只能追踪其改变的文件大小
+集中式版本控制系统--CVS、SVN
+分布式版本控制系统--GIT
+UNIX哲学--没有消息就是好消息
+**/
