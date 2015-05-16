@@ -20,6 +20,7 @@ git push origin 标签名  --推送标签到远程库  git push origin --tags  --推送所有标
 --标签管理  就是指向某个commit id，也是版本库的一个快照,默认为HEAD版本打上标签  
 
 git show 标签名  --显示标签的信息
+git config --global alias.st status   --配置当前用户的命令别名   不加--global 只用于当前仓库
 
 git stash  --保存工作区的状态
 git stash list  --查看保存的工作区列表
