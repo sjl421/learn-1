@@ -41,6 +41,7 @@ public class CountPrimes {
 		
 		/**
 		 * 此方法的时间复杂度为 o(n) 比上面一种降低了一个级别
+		 * 如果当前数是素数  则将除本身以外的所有倍数置为非素数
 		 * @param n
 		 * @return
 		 */
