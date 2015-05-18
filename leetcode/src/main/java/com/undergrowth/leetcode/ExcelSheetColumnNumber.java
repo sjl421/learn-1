@@ -7,7 +7,13 @@ public class ExcelSheetColumnNumber {
 	 */
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-
+		Solution solution=new Solution();
+		System.out.println(solution.titleToNumber("A"));
+		System.out.println(solution.titleToNumber("Z"));
+		System.out.println(solution.titleToNumber("AA"));
+		System.out.println(solution.titleToNumber("AB"));
+		System.out.println(solution.titleToNumber("BA"));
+		System.out.println(solution.titleToNumber2("BA"));
 	}
 
 	/**
@@ -21,10 +27,24 @@ public class ExcelSheetColumnNumber {
 	 * @author u1
 	 * 
 	 */
-	public class Solution {
+	public static class Solution {
 		public int titleToNumber(String s) {
-			int num=1;
+			int num=0;
+		    int length=s.length();
+			for (int i = 0; i <length ; i++) {
+				num=num*26+(s.charAt(i)-64);
+			}
 			return num;
 		}
+		
+		public int titleToNumber2(String s) {  
+			       int tmp = 0;  
+			        for(int i=0;i<s.length();i++){  
+			           int in = s.charAt(i)-64;  
+			          tmp = tmp*26+in;  
+			        }  
+			        return tmp;  
+			    }  
+
 	}
 }
