@@ -36,6 +36,8 @@ git checkout -- file  --删除工作区的修改  --eg: git checkout -- remark.txt  --用
 
 git status  --显示本地工作树的状态 查看工作区的状态,查看文件有没有被修改过    --git status			--查看文件是否修改过
 git diff 文件  --查看文件与提交到版本库中的不同，查看文件修改的内容   --eg:git diff git.txt			--查看文件修改内容
+			   --查看本地文件和版本库文件有什么不一致
+git diff --cached file --查看暂存区文件和版本库文件有什么不同			   
 
 git reset --hard head^ --回退到上一版本    --eg: git reset --hard head~100 回退到之前的100版本  --eg： git reset --hard commit id --回退到指定的commit id  --回退到指定版本
 git reflog   --查看每一次的git命令 与git reset 连用  想恢复到那个版本都没有问题啊  --查看命令历史
