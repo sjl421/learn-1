@@ -1,7 +1,7 @@
 git init--把目录变成git可以管理的仓库	--eg: git init																		--初始化本地仓库
 git add file --把文件添加到版本库中标记  --eg: git add ./																	--添加文件到本地索引中
 git commit -m 'some file' --把标记的文件添加到本地版本库中 m--表示消息，即本次提交的文件说明  --eg: git commit -m '添加文件' --commit id 使用sha1算法获得 		--提交文件到本地仓库
---工作区 暂存区  本地分支
+--工作区 暂存区(index)  本地分支
 --通常的操作都是在工作区进行的  在工作区进行操作后  需要add将变化添加到暂存区 然后使用commit将暂存区的变化  全部添加到本地分支中
   
 git remote add origin 远程仓库地址  --添加远程仓库源    --eg:git remote add origin https://github.com/undergrowthlinear/learn.git		--添加远程仓库源
@@ -30,6 +30,8 @@ git stash drop 工作区名   --删除保存的工作区
 
 git --help  --显示git的帮助信息												--查看帮助信息
 git rm  file  --删除文件从工作树和版本库的索引中   --eg: git rm aa 			--删除指定文件
+			  --删除版本库和工作区文件
+git rm --cached file  --将文件从版本库中删除			  
 git checkout -- file  --删除工作区的修改  --eg: git checkout -- remark.txt  --用版本库的文件替换工作区的文件
 
 git status  --显示本地工作树的状态 查看工作区的状态,查看文件有没有被修改过    --git status			--查看文件是否修改过

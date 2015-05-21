@@ -5,6 +5,7 @@ Desktop.ini
 
 # java
 *.class
+*.[az]
 
 #myeclipse configuration
 .metadata
