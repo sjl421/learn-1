@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<students>
+	<student>
+		<name>under17</name>
+		<age>17</age>
+		<description>When you write data into a buffer, the buffer keeps track
+			of how much data you have written. Once you need to read the data,
+			you need to switch the buffer from writing mode into reading mode
+			using the flip() method call. In reading mode the buffer lets you
+			read all the data written into the buffer
+		</description>
+	</student>
+	<student>
+		<name>under18</name>
+		<age>18</age>
+		<description>When you write data into a buffer, the buffer keeps track
+			of how much data you have written. Once you need to read the data,
+			you need to switch the buffer from writing mode into reading mode
+			using the flip() method call. In reading mode the buffer lets you
+			read all the data written into the buffer
+		</description>
+	</student>
+	<student>
+		<name>under19</name>
+		<age>19</age>
+		<description>When you write data into a buffer, the buffer keeps track
+			of how much data you have written. Once you need to read the data,
+			you need to switch the buffer from writing mode into reading mode
+			using the flip() method call. In reading mode the buffer lets you
+			read all the data written into the buffer
+		</description>
+	</student>
+	<student>
+		<name>under20</name>
+		<age>20</age>
+		<description>When you write data into a buffer, the buffer keeps track
+			of how much data you have written. Once you need to read the data,
+			you need to switch the buffer from wri
