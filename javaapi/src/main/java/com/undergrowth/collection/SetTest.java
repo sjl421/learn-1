@@ -37,7 +37,7 @@ public class SetTest {
 		linkedHashSet=new LinkedHashSet<Integer>();
 		treeSet=new TreeSet<Integer>();
 		//使用比较器构建TreeSet 按照比较器的方式进行排列Set中的元素
-		IntegerComparator comparator=new IntegerComparator();
+		StringIntegerComparator comparator=new StringIntegerComparator();
 		treeSetComparator=new TreeSet<String>(comparator);
 		treeSetComparator.addAll(Arrays.asList("100","45","78","120","87","89","87"));
 		//初始化Set值

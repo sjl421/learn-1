@@ -3,14 +3,25 @@ package com.undergrowth.collection;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.PriorityQueue;
 import java.util.TreeSet;
 
 import org.junit.Before;
 import org.junit.Test;
 
+
 /**
  * Collection测试
+ * 
+ * 
+ * PriorityQueue--迭代时，不保障元素的迭代顺序
+ * 
+ * equals 与 hashCode 的区别
+ *  1、If equal, then same hash codes too.
+	2、Same hash codes no guarantee of being equal.
+	不同数据类型生成的hashcode值不一样
+	如何重写equals与hashCode方法 依据具体的需求而定
  * @author u1
  *
  */

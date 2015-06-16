@@ -14,6 +14,10 @@ import org.junit.Test;
 
 /**
  * List测试
+ * LinkedList--允许为空，具有双端队列和列表功能
+ * ArrayList--数组大小可变的列表
+ * Vector--数组大小可随着添加或者删除元素变化
+ * Stack--堆栈--先入后出
  * @author u1
  *
  */
