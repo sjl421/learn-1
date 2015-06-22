@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- 使用Mapper代理开发 namespace的值与mapper的接口包 -->
+<mapper namespace="com.undergrowth.mybatis.mapper.CityMapper">
+
+	<!-- #{}-表示占位符,对于简单类型、pojo、hashmap 简单类型使用#{value}或者其他名称都可 pojo使用ognl获取值 
+		属性名.属性名.. ${}-表示拼接符 ，会导致sql注入 简单类型只能使用${value} pojo使用ognl获取值 -->
+
+	<!-- sql片段 可重用 不用使用where -->
+	<sql id="queryByName">
+		<if test="city!=null">
+			<if test="city.name!=null and city.name!=''">
+				and city.name like '%${city.name}%'
+			</if>
+		</if>
+	</sql>
+
+	<!-- sql片段 -->
+	<sql id="queryByIds">
+		<if test="ids!=null">
+			<!-- 集合遍历 合成效果 and id in(1,2,34,7) -->
+			<foreach collection="ids" item="user_id" open="and id in("
+				close=")" separator=",">
+				#{user_id}
+			</foreach>
+		</if>
+	</sql>
+
+	<select id="fetchByCityById" resultType="com.undergrowth.mybatis.po.City"
+		parameterType="int">
+		select * from city where
+		id = #{id}
+	</select>
+	<!-- 结果集映射 将表的列与pojo的属性进行映射 -->
+	<resultMap type="City" id="queryIdNameCity">
+		<result column="_id" property="id"></result>
+		<result column="_name" property="name"></result>
+	</resultMap>
+
+	<select id="findCityByName" parameterType="string" resultMap="queryIdNameCity">
+		select id _id,name _name from city where name like '%${value}%'
+	</select>
+
+	<select id="findCityCount" parameterType="com.undergrowth.mybatis.po.CityQueryVo"
+		resultType="int">
+		select count(1) from city
+		<where>
+			<!-- where 会自动去掉第一个and include引用之前定义的sql片段 -->
+			<include refid="queryByName"></include>
+			<!-- <if test="city!=null"> <if test="city.name!=null and city.name!=''"> 
+				and city.name like '%${city.name}%' </if> </if> -->
+		</where>
+	</select>
+
+	<select id="findCityCountByIds" parameterType="com.undergrowth.mybatis.po.CityQueryVo"
+		resultType="int">
+		select count(1) from city
+		<where>
+			<include refid="queryByIds"></include>
+		</where>
+	</select>
+	<!-- resultType中返回单个pojo和列表pojo的区别在于 Mapper代理对象会根据Mapper接口的方法返回值 来选择使用selectOne还是selectList -->
+	<select id="findCityByHashmap" parameterType="hashmap"
+		resultType="City">
+		select * from city where id=#{id} and name like '%${name}%'
+	</select>
+
+	<!-- 插入语句 -->
+	<insert id="insertCity" parameterType="City" useGeneratedKeys="true"
+		keyProperty="id">INSERT INTO city
+		(
+		Name,
+		CountryCode,
+		District,
+		Population)
+		VALUES
+		(
+		#{name},
+		#{countryCode},
+		#{district},
+		#{population})
+	</insert>
+	<!-- 插入语句 获取自增的主键编号 -->
+	<insert id="insertCityAfter" parameterType="City">
+		<selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
+			select
+			last_insert_id()
+		</selectKey>
+		INSERT INTO city
+		(
+		Name,
+		CountryCode,
+		District,
+		Population)
+		VALUES
+		(
+		#{name},
+		#{countryCode},
+		#{district},
+		#{population})
+	</insert>
+	<!-- 更新 -->
+	<update id="updateCity" parameterType="City">
+		update city set
+		population=#{population} where id=#{id}
+	</update>
+	<!-- 删除 -->
+	<delete id="removeCityById">
+		delete from city where id=#{id}
+	</delete>
+</mapper>
