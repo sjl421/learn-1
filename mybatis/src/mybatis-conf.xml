@@ -35,6 +35,7 @@
 	<mappers>
 		<mapper resource="sqlmapper/CityMapper.xml" />
 		<!-- 使用此种方式 需要Mapper接口文件与Mapper配置文件同名且位于同一目录 <mapper class=""/> -->
+		<mapper resource="sqlmapper/OrderUserMapper.xml"/>
 	</mappers>
 
 </configuration>

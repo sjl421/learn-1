@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- 使用Mapper代理开发 namespace的值与mapper的接口包 -->
+<mapper namespace="com.undergrowth.mybatis.mapper.OrderUserMapper">
+	<!-- 使用resultType进行一对一的映射 -->
+	<select id="findOrdersUserByResultType" resultType="com.undergrowth.mybatis.po.OrdersUser">
+		select
+		orders.*,user.username,user.birthday from orders,user where
+		orders.user_id=user.id
+	</select>
+	<!-- 使用resultMap进行一对一的映射 -->
+	<resultMap type="com.undergrowth.mybatis.po.OrdersUserPojo"
+		id="findOrdersUserByResultMapId">
+		<result column="id" property="id" />
+		<result column="user_id" property="user_id" />
+		<result column="number" property="number" />
+		<result column="createtime" property="createtime" />
+		<result column="note" property="note" />
+
+		<association property="user" javaType="com.undergrowth.mybatis.po.User">
+			<result column="username" property="username" />
+			<result column="birthday" property="birthday" />
+		</association>
+	</resultMap>
+
+	<!-- 使用resultMap进行一对一的映射 -->
+	<select id="findOrdersUserByResultMap" resultMap="findOrdersUserByResultMapId">
+		select
+		orders.*,user.username,user.birthday from orders,user where
+		orders.user_id=user.id
+	</select>
+
+	<!-- 使用collection进行集合元素的映射 映射成一对多 避免记录的重复 -->
+	<!-- 使用extends使orders与user不用进行映射 -->
+	<resultMap type="com.undergrowth.mybatis.po.OrdersUserDetailPojo"
+		id="findOrderUserDetailResultMapId" extends="findOrdersUserByResultMapId">
+		<collection property="orderDetails"
+			ofType="com.undergrowth.mybatis.po.OrderDetail">
+			<result column="orders_id" property="orders_id" />
+			<result column="items_id" property="items_id" />
+			<result column="items_num" property="items_num" />
+		</collection>
+	</resultMap>
+
+	<select id="findOrderUserDetailResultMap" resultMap="findOrderUserDetailResultMapId">
+		SELECT
+		orders.*,
+		user.username,
+		user.birthday,
+		orderdetail.orders_id,
+		orderdetail.items_id,
+		orderdetail.items_num
+		FROM
+		orders,
+		user,
+		orderdetail
+		WHERE
+		orders.user_id = user.id
+		AND orders.id = orderdetail.orders_id
+	</select>
+
+	<resultMap type="com.undergrowth.mybatis.po.UserToOrdersVo"
+		id="findUserAndItemsResultMapId">
+		<result column="user_id" property="id" />
+		<result column="username" property="username" />
+		<result column="birthday" property="birthday" />
+		<result column="sex" property="sex" />
+		<result column="user_address" property="address" />
+
+		<!-- 关联订单列表 -->
+		<collection property="orderList"
+			ofType="com.undergrowth.mybatis.po.OrdersToOrderDetailVo">
+			<result column="id" property="id" />
+			<result column="user_id" property="user_id" />
+			<result column="number" property="number" />
+			<result column="createtime" property="createtime" />
+			<result column="note" property="note" />
+			<!-- 订单关联明细 -->
+			<collection property="orderDetailList"
+				ofType="com.undergrowth.mybatis.po.OrderDetailToItems">
+				<result column="orders_id" property="orders_id" />
+				<result column="items_id" property="items_id" />
+				<result column="items_num" property="items_num" />
+				<!-- 关联商品 -->
+				<association property="items" javaType="com.undergrowth.mybatis.po.Items">
+					<result column="name" property="name" />
+					<result column="price" property="price" />
+					<result column="detail" property="detail" />
+				</association>
+			</collection>
+		</collection>
+	</resultMap>
+
+	<!-- 使用 collection和association进行用户和商品明细的多对多的映射 -->
+	<select id="findUserAndItemsResultMap" resultMap="findUserAndItemsResultMapId">
+
+		SELECT
+		orders.*,
+		user.username,
+		user.birthday,
+		user.sex,
+		user.address
+		user_address,
+		orderdetail.orders_id,
+		orderdetail.items_id,
+		orderdetail.items_num,
+		items.name,
+		items.price,
+		items.detail
+		FROM
+		orders,
+		user,
+		orderdetail,
+		items
+		WHERE
+		orders.user_id =
+		user.id
+		AND orders.id =
+		orderdetail.orders_id
+		AND orderdetail.items_id =
+		items.id
+	</select>
+
+</mapper>
