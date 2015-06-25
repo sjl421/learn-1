@@ -1,8 +1,13 @@
 package com.undergrowth.mybatis.po;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class OrdersUser extends Orders {
+public class OrdersUser extends Orders implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private String username;
 	private Date birthday;
 

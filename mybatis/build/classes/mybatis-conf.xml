@@ -9,6 +9,9 @@
 	<!-- mybatis运行时全局参数配置 -->
 	<settings>
 		<setting name="cacheEnabled" value="true"></setting>
+		<setting name="lazyLoadingEnabled" value="true" />
+		<!-- 按需加载每个懒加载属性 -->
+		<setting name="aggressiveLazyLoading" value="false" />
 	</settings>
 	<!-- 类型别名 -->
 	<typeAliases>
@@ -35,7 +38,7 @@
 	<mappers>
 		<mapper resource="sqlmapper/CityMapper.xml" />
 		<!-- 使用此种方式 需要Mapper接口文件与Mapper配置文件同名且位于同一目录 <mapper class=""/> -->
-		<mapper resource="sqlmapper/OrderUserMapper.xml"/>
+		<mapper resource="sqlmapper/OrderUserMapper.xml" />
 	</mappers>
 
 </configuration>

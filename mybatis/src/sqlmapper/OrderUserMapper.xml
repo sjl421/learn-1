@@ -123,4 +123,25 @@
 		items.id
 	</select>
 
+	<select id="findUserById" resultType="com.undergrowth.mybatis.po.User">
+		select * from user where id=#{value}
+	</select>
+
+	<!-- 延时加载 association -->
+	<resultMap type="com.undergrowth.mybatis.po.OrdersUserPojo"
+		id="findOrderUserLazyLoadingId">
+		<result column="id" property="id" />
+		<result column="user_id" property="user_id" />
+		<result column="number" property="number" />
+		<result column="createtime" property="createtime" />
+		<result column="note" property="note" />
+		<association property="user" javaType="com.undergrowth.mybatis.po.User"
+			select="findUserById" column="user_id"></association>
+	</resultMap>
+	<select id="findOrderUserLazyLoading" resultMap="findOrderUserLazyLoadingId">
+		select * from
+		orders
+	</select>
+   <!-- 开启Mapper的二级缓存 默认实现为PerpetualCache -->
+   <cache></cache>
 </mapper>

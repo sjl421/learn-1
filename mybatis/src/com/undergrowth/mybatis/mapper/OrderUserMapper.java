@@ -18,4 +18,5 @@ public interface OrderUserMapper {
 	public List<OrdersUserPojo> findOrdersUserByResultMap();
 	public List<OrdersUserDetailPojo> findOrderUserDetailResultMap();
 	public List<UserToOrdersVo> findUserAndItemsResultMap();
+	public List<OrdersUserPojo> findOrderUserLazyLoading();
 }
