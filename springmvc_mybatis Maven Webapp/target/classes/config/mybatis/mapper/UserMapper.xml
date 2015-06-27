@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- 使用Mapper代理开发 namespace的值与mapper的接口包 -->
+<mapper namespace="com.undergrowth.dao.UserMapper">
+	<select id="findUserById" parameterType="int"
+		resultType="com.undergrowth.pojo.User">
+		select * from user where id=#{value}
+	</select>
+</mapper>
