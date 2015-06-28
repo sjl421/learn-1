@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.undergrowth.dao.UserMapper" >
-  <resultMap id="BaseResultMap" type="com.undergrowth.po.User" >
+<mapper namespace="com.undergrowth.dao.OrderdetailMapper" >
+  <resultMap id="BaseResultMap" type="com.undergrowth.po.Orderdetail" >
     <id column="id" property="id" jdbcType="INTEGER" />
-    <result column="username" property="username" jdbcType="VARCHAR" />
-    <result column="birthday" property="birthday" jdbcType="DATE" />
-    <result column="sex" property="sex" jdbcType="CHAR" />
-    <result column="address" property="address" jdbcType="VARCHAR" />
+    <result column="orders_id" property="ordersId" jdbcType="INTEGER" />
+    <result column="items_id" property="itemsId" jdbcType="INTEGER" />
+    <result column="items_num" property="itemsNum" jdbcType="INTEGER" />
   </resultMap>
   <sql id="Example_Where_Clause" >
     <where >
@@ -67,15 +66,15 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    id, username, birthday, sex, address
+    id, orders_id, items_id, items_num
   </sql>
-  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.undergrowth.po.UserExample" >
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.undergrowth.po.OrderdetailExample" >
     select
     <if test="distinct" >
       distinct
     </if>
     <include refid="Base_Column_List" />
-    from user
+    from orderdetail
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
@@ -86,85 +85,76 @@
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
     <include refid="Base_Column_List" />
-    from user
+    from orderdetail
     where id = #{id,jdbcType=INTEGER}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
-    delete from user
+    delete from orderdetail
     where id = #{id,jdbcType=INTEGER}
   </delete>
-  <delete id="deleteByExample" parameterType="com.undergrowth.po.UserExample" >
-    delete from user
+  <delete id="deleteByExample" parameterType="com.undergrowth.po.OrderdetailExample" >
+    delete from orderdetail
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.undergrowth.po.User" >
-    insert into user (id, username, birthday, 
-      sex, address)
-    values (#{id,jdbcType=INTEGER}, #{username,jdbcType=VARCHAR}, #{birthday,jdbcType=DATE}, 
-      #{sex,jdbcType=CHAR}, #{address,jdbcType=VARCHAR})
+  <insert id="insert" parameterType="com.undergrowth.po.Orderdetail" >
+    insert into orderdetail (id, orders_id, items_id, 
+      items_num)
+    values (#{id,jdbcType=INTEGER}, #{ordersId,jdbcType=INTEGER}, #{itemsId,jdbcType=INTEGER}, 
+      #{itemsNum,jdbcType=INTEGER})
   </insert>
-  <insert id="insertSelective" parameterType="com.undergrowth.po.User" >
-    insert into user
+  <insert id="insertSelective" parameterType="com.undergrowth.po.Orderdetail" >
+    insert into orderdetail
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >
         id,
       </if>
-      <if test="username != null" >
-        username,
+      <if test="ordersId != null" >
+        orders_id,
       </if>
-      <if test="birthday != null" >
-        birthday,
+      <if test="itemsId != null" >
+        items_id,
       </if>
-      <if test="sex != null" >
-        sex,
-      </if>
-      <if test="address != null" >
-        address,
+      <if test="itemsNum != null" >
+        items_num,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="id != null" >
         #{id,jdbcType=INTEGER},
       </if>
-      <if test="username != null" >
-        #{username,jdbcType=VARCHAR},
+      <if test="ordersId != null" >
+        #{ordersId,jdbcType=INTEGER},
       </if>
-      <if test="birthday != null" >
-        #{birthday,jdbcType=DATE},
+      <if test="itemsId != null" >
+        #{itemsId,jdbcType=INTEGER},
       </if>
-      <if test="sex != null" >
-        #{sex,jdbcType=CHAR},
-      </if>
-      <if test="address != null" >
-        #{address,jdbcType=VARCHAR},
+      <if test="itemsNum != null" >
+        #{itemsNum,jdbcType=INTEGER},
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.undergrowth.po.UserExample" resultType="java.lang.Integer" >
-    select count(*) from user
+  <select id="countByExample" parameterType="com.undergrowth.po.OrderdetailExample" resultType="java.lang.Integer" >
+    select count(*) from orderdetail
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
   </select>
   <update id="updateByExampleSelective" parameterType="map" >
-    update user
+    update orderdetail
     <set >
       <if test="record.id != null" >
         id = #{record.id,jdbcType=INTEGER},
       </if>
-      <if test="record.username != null" >
-        username = #{record.username,jdbcType=VARCHAR},
+      <if test="record.ordersId != null" >
+        orders_id = #{record.ordersId,jdbcType=INTEGER},
       </if>
-      <if test="record.birthday != null" >
-        birthday = #{record.birthday,jdbcType=DATE},
+      <if test="record.itemsId != null" >
+        items_id = #{record.itemsId,jdbcType=INTEGER},
       </if>
-      <if test="record.sex != null" >
-        sex = #{record.sex,jdbcType=CHAR},
-      </if>
-      <if test="record.address != null" >
-        address = #{record.address,jdbcType=VARCHAR},
+      <if test="record.itemsNum != null" >
+        items_num = #{record.itemsNum,jdbcType=INTEGER},
       </if>
     </set>
     <if test="_parameter != null" >
@@ -172,44 +162,35 @@
     </if>
   </update>
   <update id="updateByExample" parameterType="map" >
-    update user
+    update orderdetail
     set id = #{record.id,jdbcType=INTEGER},
-      username = #{record.username,jdbcType=VARCHAR},
-      birthday = #{record.birthday,jdbcType=DATE},
-      sex = #{record.sex,jdbcType=CHAR},
-      address = #{record.address,jdbcType=VARCHAR}
+      orders_id = #{record.ordersId,jdbcType=INTEGER},
+      items_id = #{record.itemsId,jdbcType=INTEGER},
+      items_num = #{record.itemsNum,jdbcType=INTEGER}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.undergrowth.po.User" >
-    update user
+  <update id="updateByPrimaryKeySelective" parameterType="com.undergrowth.po.Orderdetail" >
+    update orderdetail
     <set >
-      <if test="username != null" >
-        username = #{username,jdbcType=VARCHAR},
+      <if test="ordersId != null" >
+        orders_id = #{ordersId,jdbcType=INTEGER},
       </if>
-      <if test="birthday != null" >
-        birthday = #{birthday,jdbcType=DATE},
+      <if test="itemsId != null" >
+        items_id = #{itemsId,jdbcType=INTEGER},
       </if>
-      <if test="sex != null" >
-        sex = #{sex,jdbcType=CHAR},
-      </if>
-      <if test="address != null" >
-        address = #{address,jdbcType=VARCHAR},
+      <if test="itemsNum != null" >
+        items_num = #{itemsNum,jdbcType=INTEGER},
       </if>
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.undergrowth.po.User" >
-    update user
-    set username = #{username,jdbcType=VARCHAR},
-      birthday = #{birthday,jdbcType=DATE},
-      sex = #{sex,jdbcType=CHAR},
-      address = #{address,jdbcType=VARCHAR}
+  <update id="updateByPrimaryKey" parameterType="com.undergrowth.po.Orderdetail" >
+    update orderdetail
+    set orders_id = #{ordersId,jdbcType=INTEGER},
+      items_id = #{itemsId,jdbcType=INTEGER},
+      items_num = #{itemsNum,jdbcType=INTEGER}
     where id = #{id,jdbcType=INTEGER}
   </update>
-  <select id="findUserById" parameterType="int"
-		resultType="com.undergrowth.po.User">
-		select * from user where id=#{value}
-	</select>
 </mapper>

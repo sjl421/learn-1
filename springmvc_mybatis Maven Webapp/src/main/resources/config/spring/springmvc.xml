@@ -45,6 +45,17 @@
 		<property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"></property>
 	</bean>
 
+	<!-- 配置视图解析器的前缀和后缀 -->
+	<bean
+		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="prefix" value="/WEB-INF"></property>
+		<property name="suffix" value=".jsp"></property>
+	</bean>
+	<!-- 事务支持 -->
+	<bean id="transactionManager"
+		class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="dataSource"></property>
+	</bean>
 
 	<!-- 使用注解方式映射和适配处理器 -->
 	<mvc:annotation-driven></mvc:annotation-driven>
