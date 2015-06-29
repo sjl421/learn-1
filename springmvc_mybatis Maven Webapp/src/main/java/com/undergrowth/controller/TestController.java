@@ -89,7 +89,7 @@ public class TestController {
 	@RequestMapping("/updateByPrimaryKey.action")
 	public ModelAndView  updateByPrimaryKey(){
 		ModelAndView modelAndView=new ModelAndView();
-		User record=testService.selectByPrimaryKey(27);
+		User record=testService.selectByPrimaryKey(28);
 		record.setUsername("天天向上");
 		int num=testService.updateByPrimaryKey(record);
 		modelAndView.addObject("num", num);
